@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaxFit Gym - Your Fitness Journey Starts Here</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="MaxFit Gym - Your premier fitness destination with state-of-the-art equipment, expert trainers, and a supportive community.">
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="module" src="/main.jsx"></script>
+
+    <section id="hero">
+        <div class="container">
+            <h2 class="headingz">Get Fit, Stay Strong</h2>
+            <p>Join MaxFit Gym and take your fitness journey to the next level!</p>
+            <a href="#signup" class="btn">Sign Up Now</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="headingz">About Us</h2>
+            <p style="font-size: large;">At MaxFit Gym, we offer state-of-the-art fitness equipment, certified trainers,
+                and a supportive community to help you achieve your fitness goals. Whether you're a beginner or a
+                seasoned athlete, we have everything you need to succeed!</p>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2 class="headingz">Our Services</h2>
+            <div class="service">
+                <h3>Personal Training</h3>
+                <p>Work one-on-one with certified trainers to reach your full potential.</p>
+            </div>
+            <div class="service">
+                <h3>Group Classes</h3>
+                <p>Join group fitness classes like Yoga, Zumba, and HIIT for a fun and motivating experience.</p>
+            </div>
+            <div class="service">
+                <h3>Nutrition Coaching</h3>
+                <p>Our experts help you with meal planning, supplements, and more to fuel your body properly.</p>
+            </div>
+            <div class="service">
+                <h3>BMI Calculator</h3>
+                <p>Calculate your Body Mass Index (BMI) to understand your fitness level.</p>
+                <form id="bmiForm">
+                    <label for="weight">Weight (kg):</label>
+                    <input type="number" id="weight" name="weight" placeholder="Enter your weight" required>
+                    <label for="height">Height (cm):</label>
+                    <input type="number" id="height" name="height" placeholder="Enter your height" required>
+                    <button type="button" onclick="calculateBMI()">Calculate</button>
+                </form>
+                <p id="bmiResult"></p>
+            </div>
+            <div class="service">
+                <h3>Diet Plan</h3>
+                <p>Get a customized diet plan based on your calorie needs and activity level.</p>
+                <form id="dietForm">
+                    <label for="calories">Daily Calorie Requirement (kcal):</label>
+                    <input type="number" id="calories" name="calories" placeholder="Enter your calories" required>
+
+                    <label for="activity">Activity Level:</label>
+                    <select id="activity" name="activity" required>
+                        <option value="sedentary">Sedentary (little to no exercise)</option>
+                        <option value="light">Lightly Active (1-3 days exercise/week)</option>
+                        <option value="moderate">Moderately Active (3-5 days exercise/week)</option>
+                        <option value="active">Very Active (6-7 days exercise/week)</option>
+                    </select>
+
+                    <button type="button" onclick="generateDietPlan()">Generate Plan</button>
+                </form>
+                <p id="dietPlanResult"></p>
+            </div>
+            <div class="service">
+                <h3>Supplements Buying</h3>
+                <p>Browse our selection of high-quality supplements to support your fitness journey.</p>
+                <form id="supplementsForm">
+                    <label for="goal">Select Your Fitness Goal:</label>
+                    <select id="goal" name="goal" required>
+                        <option value="muscle_gain">Muscle Gain</option>
+                        <option value="weight_loss">Weight Loss</option>
+                        <option value="endurance">Endurance</option>
+                        <option value="general_health">General Health</option>
+                    </select>
+
+                    <button type="button" onclick="showSupplements()">View Supplements</button>
+                </form>
+                <p id="supplementsResult"></p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section id="signup">
+        <div class="container">
+            <h2 class="headingz">Sign Up for Membership</h2>
+            <form action="#" method="POST">
+                <label for="name" style="font-size: larger;">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required value="Anmol Kathuria">
+
+                <label for="email" style="font-size: larger;">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+                <label for="phone" style="font-size: larger;">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+
+                <label for="membership" style="font-size: larger;">Select Membership Plan</label>
+                <select id="membership" name="membership">
+                    <option value="basic">Basic</option>
+                    <option value="premium">Premium</option>
+                    <option value="vip">VIP</option>
+                </select>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="Your Message (Optional)"></textarea>
+
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="headingz">Contact Us</h2>
+            <p>Have questions? Get in touch with us!</p>
+            <address>
+                <p>Email: <a href="mailto:info@MaxFitgym.com">rohit74@gmail.com</a></p>
+                <p>Phone: +91 XXXXXXXXXX</p>
+                <p>Location: Preet Vihar</p>
+            </address>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MaxFit Gym | All Rights Reserved</p>
+            <p>Anmol Kathuria</p>
+        </div>
+    </footer>
+    <script>
+        function calculateBMI() {
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value;
+
+            if (weight && height) {
+                const heightInMeters = height / 100; // Convert cm to meters
+                const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(2);
+
+                let category = '';
+                if (bmi < 18.5) {
+                    category = 'Underweight';
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    category = 'Normal weight';
+                } else if (bmi >= 25 && bmi < 29.9) {
+                    category = 'Overweight';
+                } else {
+                    category = 'Obesity';
+                }
+
+                document.getElementById('bmiResult').innerHTML =
+                    `Your BMI is <strong>${bmi}</strong>. Category: <strong>${category}</strong>`;
+            } else {
+                document.getElementById('bmiResult').innerHTML = 'Please enter both weight and height!';
+            }
+        }
+
+        function generateDietPlan() {
+            const calories = document.getElementById('calories').value;
+            const activity = document.getElementById('activity').value;
+
+            if (calories) {
+                let dietPlan = '';
+
+                if (activity === 'sedentary') {
+                    dietPlan = `
+                        <strong>Breakfast:</strong> Oatmeal with fruits and nuts<br>
+                        <strong>Lunch:</strong> Grilled chicken or tofu with steamed vegetables and quinoa<br>
+                        <strong>Snack:</strong> Greek yogurt with a handful of berries<br>
+                        <strong>Dinner:</strong> Salmon or lentil soup with a side salad<br>
+                    `;
+                } else if (activity === 'light') {
+                    dietPlan = `
+                        <strong>Breakfast:</strong> Smoothie with banana, peanut butter, and protein powder<br>
+                        <strong>Lunch:</strong> Brown rice with lean beef or chickpeas and vegetables<br>
+                        <strong>Snack:</strong> Hard-boiled eggs or trail mix<br>
+                        <strong>Dinner:</strong> Stir-fried chicken or tofu with vegetables and rice noodles<br>
+                    `;
+                } else if (activity === 'moderate') {
+                    dietPlan = `
+                        <strong>Breakfast:</strong> Scrambled eggs with avocado and whole-grain toast<br>
+                        <strong>Lunch:</strong> Grilled salmon or tempeh with couscous and a side of vegetables<br>
+                        <strong>Snack:</strong> Protein bar or apple with almond butter<br>
+                        <strong>Dinner:</strong> Roasted chicken or legumes with sweet potatoes and greens<br>
+                    `;
+                } else if (activity === 'active') {
+                    dietPlan = `
+                        <strong>Breakfast:</strong> Pancakes with Greek yogurt and fresh fruits<br>
+                        <strong>Lunch:</strong> Turkey sandwich with a side of mixed salad<br>
+                        <strong>Snack:</strong> Protein shake and a banana<br>
+                        <strong>Dinner:</strong> Pasta with lean ground meat or veggie meatballs<br>
+                    `;
+                }
+
+                document.getElementById('dietPlanResult').innerHTML =
+                    `<p>Your suggested diet plan:</p> ${dietPlan}`;
+            } else {
+                document.getElementById('dietPlanResult').innerHTML = 'Please enter your calorie requirement!';
+            }
+        }
+
+        function showSupplements() {
+            const goal = document.getElementById('goal').value;
+
+            let supplementsList = '';
+            if (goal === 'muscle_gain') {
+                supplementsList = `
+                <strong>Recommended Supplements:</strong>
+                <ul>
+                    <li>Whey Protein</li>
+                    <li>Creatine Monohydrate</li>
+                    <li>BCAAs (Branched-Chain Amino Acids)</li>
+                </ul>
+            `;
+            } else if (goal === 'weight_loss') {
+                supplementsList = `
+                <strong>Recommended Supplements:</strong>
+                <ul>
+                    <li>Fat Burners</li>
+                    <li>Green Tea Extract</li>
+                    <li>Fiber Supplements</li>
+                </ul>
+            `;
+            } else if (goal === 'endurance') {
+                supplementsList = `
+                <strong>Recommended Supplements:</strong>
+                <ul>
+                    <li>Electrolyte Mixes</li>
+                    <li>Carbohydrate Gels</li>
+                    <li>L-Glutamine</li>
+                </ul>
+            `;
+            } else if (goal === 'general_health') {
+                supplementsList = `
+                <strong>Recommended Supplements:</strong>
+                <ul>
+                    <li>Multivitamins</li>
+                    <li>Omega-3 Fish Oil</li>
+                    <li>Probiotics</li>
+                </ul>
+            `;
+            }
+
+            document.getElementById('supplementsResult').innerHTML = supplementsList;
+        }
+    </script>
+
+    <!-- React root for Protein Quality Tester -->
+    <section id="protein-tester">
+        <div class="container">
+            <h2 class="headingz">Protein Quality Tester</h2>
+            <div id="protein-root"></div>
+        </div>
+    </section>
+
+    <!-- React app (JSX parsed by Babel) -->
+    <script type="text/babel" src="scripts/app.jsx"></script>
+
+
+
+</body>
+
+</html>
